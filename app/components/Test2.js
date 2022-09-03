@@ -6,13 +6,10 @@ import {
   TouchableOpacity,
   Dimensions,
 } from "react-native";
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 
-import Youtube from "./app/components/YoutubeVideo";
 import { NavigationContainer, useRoute } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
-const Stack = createNativeStackNavigator();
 
 function DetailsScreen() {
   const route = useRoute();
@@ -23,16 +20,13 @@ function DetailsScreen() {
     <View>
       <Text>Email: {email}</Text>
       <Text>username: {username}</Text>
-      <View>
-        <Youtube />
-      </View>
     </View>
   );
 }
 
 function HomeScreen({ navigation }) {
-  const [email, setEmail] = useState(" ");
-  const [username, setUsername] = useState(" ");
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
 
   const handleSubmit = () => {
     navigation.navigate("Details", {
@@ -43,6 +37,7 @@ function HomeScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
+      <Text>{email}</Text>
       <View style={styles.inputContainer}>
         <View>
           <Text>Email:</Text>
@@ -53,7 +48,7 @@ function HomeScreen({ navigation }) {
           />
         </View>
         <View>
-          <Text>Username:</Text>
+          <Text>Email:</Text>
           <TextInput
             placeholder="Username..."
             value={username}
@@ -68,7 +63,9 @@ function HomeScreen({ navigation }) {
   );
 }
 
+const Stack = createNativeStackNavigator();
 const { height, width } = Dimensions.get("screen");
+
 const App = () => {
   return (
     <NavigationContainer>
@@ -102,8 +99,5 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 16,
     textAlign: "center",
-  },
-  input: {
-    color: "red",
   },
 });
