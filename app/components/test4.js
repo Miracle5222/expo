@@ -6,7 +6,6 @@ import {
   TouchableOpacity,
   Dimensions,
   ScrollView,
-  Button,
 } from "react-native";
 import React, { useState } from "react";
 
@@ -16,24 +15,13 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Higlighter from "./app/components/Test3";
 import SyntaxHighlighter from "react-native-syntax-highlighter"; // 2.0.0
 import { atomOneLight } from "react-syntax-highlighter/styles/prism"; // 7.0.1
-import Highlighter from "./app/components/Test3";
-import * as Clipboard from "expo-clipboard";
 
 const Stack = createNativeStackNavigator();
 
-function DetailsScreen({ navigation }, props) {
+function DetailsScreen({ navigation }) {
   const route = useRoute();
 
   const { email, username } = route.params;
-  const [copiedText, setCopiedText] = useState("");
-
-  const fetchCopiedText = async () => {
-    const text = await Clipboard.getStringAsync();
-    setCopiedText(text);
-  };
-  const hideText = () => {
-    setCopiedText("");
-  };
 
   return (
     <View>
@@ -45,30 +33,15 @@ function DetailsScreen({ navigation }, props) {
       <TouchableOpacity onPress={() => navigation.navigate("Code")}>
         <Text>go to Code</Text>
       </TouchableOpacity>
-      <Button title="View copied text" onPress={fetchCopiedText} />
-      <Button title="Hide" onPress={hideText} />
-
-      <View style={{ backgroundColor: "#E87A90", height: "100%" }}>
-        <SyntaxHighlighter
-          {...props}
-          style={atomOneLight}
-          customStyle={{ padding: 0, margin: 0 }}
-          language="java"
-          fontSize={14}
-          highlighter="prism"
-        >
-          {copiedText}
-        </SyntaxHighlighter>
-      </View>
     </View>
   );
 }
-function CodeScreen({ navigation }) {
-  return (
+function CodeScreen({ navigation }, props) {
+  return(
     <>
-      <Highlighter />
+    
     </>
-  );
+  )
 }
 
 function HomeScreen({ navigation }) {
