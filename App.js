@@ -6,15 +6,10 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 
+import HomeScreen from "./src/screens/homeScreen";
+
 const Tab = createBottomTabNavigator();
 
-const HomeScreen = () => {
-  return (
-    <View>
-      <Text>HomeScreen</Text>
-    </View>
-  );
-};
 const SaveScreen = () => {
   return (
     <View>
@@ -26,7 +21,6 @@ const SaveScreen = () => {
 const App = () => {
   return (
     <>
-      <StatusBar />
       <NavigationContainer>
         <Tab.Navigator
           screenOptions={({ route }) => ({
